@@ -22,6 +22,7 @@ class Profile(models.Model):
     """
     project_obj = P
     project_obj.followers.all() -> All users following this profile
+    user.following.all() -> All user profiles I follow
     """
 
 def user_did_save(sender, instance, created, *args, **kwargs):
