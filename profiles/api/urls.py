@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.urls import path, re_path
-from .views import user_follow_view
+from .views import (
+    profile_detail_api_view
+)
 
 
 """
@@ -9,5 +11,6 @@ Base Endpoint /api/profile/
 """
 
 urlpatterns = [
-    path('<str:username>/follow/', user_follow_view),
+    path('<str:username>/', profile_detail_api_view),
+    path('<str:username>/follow', profile_detail_api_view),
 ]

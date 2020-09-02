@@ -2,7 +2,28 @@ import React, { useEffect, useState } from "react";
 import { TweetsList } from "./list";
 import { apiTweetDetail } from "./lookup";
 import { Tweet } from "./detail";
+import { FeedList } from "./feed";
 import { TweetCreate } from "./create";
+
+export function FeedComponent(props) {
+  const [newTweets, setNewTweets] = useState([]);
+  const canTweet = props.canTweet === "false" ? false : true;
+  const handleNewTweet = (newTweet) => {
+    // backend api response handler
+    let tempNewTweets = [...newTweets];
+    tempNewTweets.unshift(newTweet);
+    setNewTweets(tempNewTweets);
+  };
+
+  return (
+    <div className={props.className}>
+      {canTweet === true && (
+        <TweetCreate didTweet={handleNewTweet} className="col-12 mb-3" />
+      )}
+      <FeedList newTweets={newTweets} {...props} />
+    </div>
+  );
+}
 
 export function TweetsComponent(props) {
   const [newTweets, setNewTweets] = useState([]);

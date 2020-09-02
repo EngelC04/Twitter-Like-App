@@ -2,9 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
+import { ProfileBadgeComponent } from "./profiles";
 import * as serviceWorker from "./serviceWorker";
-import { TweetsComponent, TweetDetailComponent } from "./tweets";
-
+import { FeedComponent, TweetsComponent, TweetDetailComponent } from "./tweets";
 const appEl = document.getElementById("root");
 if (appEl) {
   ReactDOM.render(<App />, appEl);
@@ -15,10 +15,23 @@ if (tweetsEl) {
   ReactDOM.render(e(TweetsComponent, tweetsEl.dataset), tweetsEl);
 }
 
+const tweetFeedEl = document.getElementById("tweetme-2-feed");
+if (tweetFeedEl) {
+  ReactDOM.render(e(FeedComponent, tweetFeedEl.dataset), tweetFeedEl);
+}
+
 const tweetDetailElements = document.querySelectorAll(".tweetme-2-detail");
 
 tweetDetailElements.forEach((container) => {
   ReactDOM.render(e(TweetDetailComponent, container.dataset), container);
+});
+
+const useProfileBadgeElements = document.querySelectorAll(
+  ".tweetme-2-profile-badge"
+);
+
+useProfileBadgeElements.forEach((container) => {
+  ReactDOM.render(e(ProfileBadgeComponent, container.dataset), container);
 });
 
 // If you want your app to work offline and load faster, you can change
